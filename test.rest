@@ -1,0 +1,33 @@
+
+### USER REGISTER
+POST http://localhost:8000/user/register
+Content-Type: application/json
+
+{
+  "email": "ridzi@gmail.com",
+  "password": "123456"
+}
+
+### USER LOGIN
+POST http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+  "email": "ridzi@gmail.com",
+  "password": "123456"
+}
+
+### NOTE CREATE
+POST http://localhost:8000/notes/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzaGFsdWFAZ21haWwuY29tIiwiaWF0IjoxNjczMTg3ODY0fQ.7lDadI7284q62q5PHvYjIGiPXXR2PvwPCQauDSUjeZk
+
+{
+  "title": "this my title 4",
+  "content": "this is my 4th content"
+}
+
+### NOTE READ
+GET http://localhost:8000/notes/read
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJyaWR6aUBnbWFpbC5jb20iLCJpYXQiOjE2NzMxODg1ODZ9.pVYkeHUpd0j3uH6JjeEnMLNn4zLgjGXp71qkKNMqTso

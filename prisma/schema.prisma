@@ -16,13 +16,19 @@ model Users {
   password        String            
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
+
+  // relation
+  notes           Notes[]
 }
 
 model Notes {
   id              Int               @id @default(autoincrement())
   title           String
   content         String
-  author          String
+  user_id         Int
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
+
+  // relation
+  user            Users             @relation(fields: [user_id], references: [id])
 }

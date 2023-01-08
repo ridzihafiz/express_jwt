@@ -40,3 +40,56 @@ export const user_register = async (req = request, res = response) => {
     });
   }
 };
+
+// login user
+
+export const user_login = async (req = request, res = response) => {
+  try {
+    // ambil body
+    const data = await req.body;
+    // console.log(data);
+
+    // check email
+    const checkEmail = await db.users.findUnique({
+      where: {
+        email: data.email,
+      },
+    });
+
+    // if email cannot found in database
+    if (!checkEmail) {
+      return res.status(404).json({
+        success: false,
+        message: "email is not found",
+      });
+    }
+
+    // if password are not same
+    if (data.password !== checkEmail.password) {
+      return res.status(401).json({
+        success: false,
+        message: "password is wrong",
+      });
+    }
+
+    // generate token
+    const token = jwt.sign(
+      {
+        id: checkEmail.id,
+        email: checkEmail.email,
+      },
+      process.env.SECRET_KEY
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "login succesfully",
+      token: token,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};

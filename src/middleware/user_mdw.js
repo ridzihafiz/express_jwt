@@ -27,7 +27,11 @@ const user_mdw = async (req = request, res = response, next) => {
       });
     }
 
-    // next adalah monggo silakan lewat
+    // generate req.body
+    req.body.user_id = verify.id;
+    req.body.email = verify.email;
+
+    // next adalah monggo silakan lewat/lanjut
     next();
   } catch (error) {
     res.status(401).json({

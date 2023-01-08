@@ -8,6 +8,6 @@ const notes_routes = express.Router();
 notes_routes.post("/notes/create", user_mdw, notes_create);
 
 // read
-notes_routes.get("/notes/read", notes_read);
+notes_routes.get("/notes/read", user_mdw, notes_read);
 
 export default notes_routes;
